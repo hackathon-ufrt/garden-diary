@@ -6,20 +6,20 @@ import { FlashList } from "@shopify/flash-list";
 
 import { api, type RouterOutputs } from "~/utils/api";
 
-const PostCard: React.FC<{
-  post: RouterOutputs["post"]["all"][number];
+const PlantCard: React.FC<{
+  plant: RouterOutputs["plant"]["all"][number];
   onDelete: () => void;
-}> = ({ post, onDelete }) => {
+}> = ({ plant, onDelete }) => {
   const router = useRouter();
 
   return (
     <View className="flex flex-row rounded-lg bg-white/10 p-4">
       <View className="flex-grow">
-        <TouchableOpacity onPress={() => router.push(`/post/${post.id}`)}>
+        <TouchableOpacity onPress={() => router.push(`/plant/${plant.id}`)}>
           <Text className="text-xl font-semibold text-pink-400">
-            {post.title}
+            {plant.name}
           </Text>
-          <Text className="mt-2 text-white">{post.content}</Text>
+          <Text className="mt-2 text-white">{plant.description}</Text>
         </TouchableOpacity>
       </View>
       <TouchableOpacity onPress={onDelete}>
@@ -29,17 +29,17 @@ const PostCard: React.FC<{
   );
 };
 
-const CreatePost: React.FC = () => {
+const CreatePlant: React.FC = () => {
   const utils = api.useContext();
 
-  const [title, setTitle] = React.useState("");
-  const [content, setContent] = React.useState("");
+  const [name, setName] = React.useState("");
+  const [description, setDescription] = React.useState("");
 
-  const { mutate, error } = api.post.create.useMutation({
+  const { mutate, error } = api.plant.create.useMutation({
     async onSuccess() {
-      setTitle("");
-      setContent("");
-      await utils.post.all.invalidate();
+      setName("");
+      setDescription("");
+      await utils.plant.all.invalidate();
     },
   });
 
@@ -48,9 +48,9 @@ const CreatePost: React.FC = () => {
       <TextInput
         className="mb-2 rounded bg-white/10 p-2 text-white"
         placeholderTextColor="rgba(255, 255, 255, 0.5)"
-        value={title}
-        onChangeText={setTitle}
-        placeholder="Title"
+        value={name}
+        onChangeText={setName}
+        placeholder="Name"
       />
       {error?.data?.zodError?.fieldErrors.title && (
         <Text className="mb-2 text-red-500">
@@ -60,9 +60,9 @@ const CreatePost: React.FC = () => {
       <TextInput
         className="mb-2 rounded bg-white/10 p-2 text-white"
         placeholderTextColor="rgba(255, 255, 255, 0.5)"
-        value={content}
-        onChangeText={setContent}
-        placeholder="Content"
+        value={description}
+        onChangeText={setDescription}
+        placeholder="Beschreibung"
       />
       {error?.data?.zodError?.fieldErrors.content && (
         <Text className="mb-2 text-red-500">
@@ -73,12 +73,12 @@ const CreatePost: React.FC = () => {
         className="rounded bg-green-900 p-2"
         onPress={() => {
           mutate({
-            title,
-            content,
+            name,
+            description,
           });
         }}
       >
-        <Text className="font-semibold text-white">Publish post</Text>
+        <Text className="font-semibold text-white">Pflanze Speichern</Text>
       </TouchableOpacity>
     </View>
   );
@@ -87,9 +87,7 @@ const CreatePost: React.FC = () => {
 const Index = () => {
   const utils = api.useContext();
 
-  const router = useRouter();
-
-  const postQuery = api.post.all.useQuery();
+  const plantQuery = api.plant.all.useQuery();
 
   const deletePostMutation = api.post.delete.useMutation({
     onSettled: () => utils.post.all.invalidate(),
@@ -98,38 +96,29 @@ const Index = () => {
   return (
     <SafeAreaView className="bg-green-600">
       {/* Changes page title visible on the header */}
-      <Stack.Screen options={{ title: "Home Page" }} />
+      <Stack.Screen options={{ title: "Pflanzen" }} />
       <View className="h-full w-full p-4">
-          <TouchableOpacity onPress={() => router.push(`/plant`)}>
-        <Text className="mx-auto pb-2 text-5xl font-bold text-white">
-          Zu den <Text className="text-pink-400">Pflanzen</Text>
-        </Text>
-          </TouchableOpacity>
+
         <Button
-          onPress={() => void utils.post.all.invalidate()}
-          title="Refresh posts"
+          onPress={() => void utils.plant.all.invalidate()}
+          title="Refresh"
           color={"#16302b"}
         />
 
-        <View className="py-2">
-          <Text className="font-semibold italic text-white">
-            Press on a post
-          </Text>
-        </View>
 
         <FlashList
-          data={postQuery.data}
+          data={plantQuery.data}
           estimatedItemSize={20}
           ItemSeparatorComponent={() => <View className="h-2" />}
           renderItem={(p) => (
-            <PostCard
-              post={p.item}
+            <PlantCard
+              plant={p.item}
               onDelete={() => deletePostMutation.mutate(p.item.id)}
             />
           )}
         />
 
-        <CreatePost />
+        <CreatePlant />
       </View>
     </SafeAreaView>
   );
