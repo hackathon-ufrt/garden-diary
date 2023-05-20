@@ -12,6 +12,8 @@
     "db:generate": "turbo db:generate",
     "db:push": "turbo db:push db:generate",
     "dev": "turbo dev --parallel",
+    "dev:web:android": "turbo dev:web:android --parallel",
+    "dev:web:ios": "turbo dev:web:ios --parallel",
     "format": "prettier --write \"**/*.{js,cjs,mjs,ts,tsx,md,json}\" --ignore-path .gitignore",
     "lint": "turbo lint && manypkg check",
     "lint:fix": "turbo lint:fix && manypkg fix",

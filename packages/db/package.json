@@ -9,7 +9,9 @@
     "db:generate": "pnpm with-env prisma generate",
     "db:push": "pnpm with-env prisma db push --skip-generate",
     "db:format": "pnpm with-env prisma format",
-    "dev": "pnpm with-env prisma studio --port 5550",
+    "dev": "pnpm with-env prisma studio --port 5555",
+    "dev:web:android": "pnpm with-env prisma studio --port 5555",
+    "dev:web:ios": "pnpm with-env prisma studio --port 5555",
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
