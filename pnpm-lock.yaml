@@ -172,7 +172,7 @@ importers:
         version: 13.4.2(@babel/core@7.21.8)(react-dom@18.2.0)(react@18.2.0)
       next-auth:
         specifier: ^4.22.1
-        version: 4.22.1(next@13.4.2)(react-dom@18.2.0)(react@18.2.0)
+        version: 4.22.1(next@13.4.2)(nodemailer@6.9.2)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -267,7 +267,10 @@ importers:
         version: 13.4.2(@babel/core@7.21.8)(react-dom@18.2.0)(react@18.2.0)
       next-auth:
         specifier: ^4.22.1
-        version: 4.22.1(next@13.4.2)(react-dom@18.2.0)(react@18.2.0)
+        version: 4.22.1(next@13.4.2)(nodemailer@6.9.2)(react-dom@18.2.0)(react@18.2.0)
+      nodemailer:
+        specifier: ^6.9.2
+        version: 6.9.2
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -2258,7 +2261,7 @@ packages:
       next-auth: ^4
     dependencies:
       '@prisma/client': 4.14.0(prisma@4.14.0)
-      next-auth: 4.22.1(next@13.4.2)(react-dom@18.2.0)(react@18.2.0)
+      next-auth: 4.22.1(next@13.4.2)(nodemailer@6.9.2)(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
   /@next/env@13.4.2:
@@ -7810,7 +7813,7 @@ packages:
     resolution: {integrity: sha512-SrQrok4CATudVzBS7coSz26QRSmlK9TzzoFbeKfcPBUFPjcQM9Rqvr/DlJkOrwI/0KcgvMub1n1g5Jt9EgRn4A==}
     dev: false
 
-  /next-auth@4.22.1(next@13.4.2)(react-dom@18.2.0)(react@18.2.0):
+  /next-auth@4.22.1(next@13.4.2)(nodemailer@6.9.2)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-NTR3f6W7/AWXKw8GSsgSyQcDW6jkslZLH8AiZa5PQ09w1kR8uHtR9rez/E9gAq/o17+p0JYHE8QjF3RoniiObA==}
     peerDependencies:
       next: ^12.2.5 || ^13
@@ -7826,6 +7829,7 @@ packages:
       cookie: 0.5.0
       jose: 4.14.4
       next: 13.4.2(@babel/core@7.21.8)(react-dom@18.2.0)(react@18.2.0)
+      nodemailer: 6.9.2
       oauth: 0.9.15
       openid-client: 5.4.2
       preact: 10.13.2
@@ -7939,6 +7943,11 @@ packages:
   /node-stream-zip@1.15.0:
     resolution: {integrity: sha512-LN4fydt9TqhZhThkZIVQnF9cwjU3qmUH9h78Mx/K7d3VvfRqqwthLwJEUOEL0QPZ0XQmNN7be5Ggit5+4dq3Bw==}
     engines: {node: '>=0.12.0'}
+    dev: false
+
+  /nodemailer@6.9.2:
+    resolution: {integrity: sha512-4+TYaa/e1nIxQfyw/WzNPYTEZ5OvHIDEnmjs4LPmIfccPQN+2CYKmGHjWixn/chzD3bmUTu5FMfpltizMxqzdg==}
+    engines: {node: '>=6.0.0'}
     dev: false
 
   /normalize-path@3.0.0:
