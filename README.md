@@ -2,6 +2,15 @@
 
 <img width="1758" alt="turbo2" src="https://user-images.githubusercontent.com/51714798/213819392-33e50db9-3e38-4c51-9a22-03abe5e48f3d.png">
 
+## Getting Started
+
+First, run the development container:
+
+```bash
+docker build -t gardendiarydev .
+docker run --rm -it -u $(id -u ${USER}):$(id -g ${USER}) -v ${PWD}:/gardendiary -p 3000:3000 -p 5555:5555 gardendiarydev
+```
+
 ## Installation
 
 There are two ways of initializing an app using `create-t3-turbo` starter. You can either use this repository as a template or use Turbo's CLI to init your project:
@@ -42,7 +51,7 @@ packages
      └─ typesafe db-calls using Prisma
 ```
 
-> In this template, we use `@acme` as a placeholder for package names. As a user, you might want to replace it with your own organization or project name. You can use find-and-replace to change all the instances of `@acme/` to something like `@my-company/` / `@project-name/`.
+> In this template, we use `gardendiary` as a placeholder for package names. As a user, you might want to replace it with your own organization or project name. You can use find-and-replace to change all the instances of `gardendiary/` to something like `@my-company/` / `@project-name/`.
 
 ## FAQ
 
